@@ -1,0 +1,103 @@
+\documentclass[]{spie}  %>>> use for US letter paper
+%\documentclass[a4paper]{spie}  %>>> use this instead for A4 paper
+%\documentclass[nocompress]{spie}  %>>> to avoid compression of citations
+
+\renewcommand{\baselinestretch}{1.0} % Change to 1.65 for double spacing
+ 
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{glossaries}
+\title{A review of simulation and performance modeling for the WFIRST coronagraph instrument}
+% Ewan S. Douglas, Jaren N. Ashcraft, The Univ. of Arizona (United States); John Debes, Space Telescope Science Institute (United States); John Krist, Jet Propulsion Lab., Caltech (United States); Nikole K. Lewis, Cornell Univ. (United States); Kian Milani, The Univ. of Arizona (United States); Bijan Nemati, The Univ. of Alabama in Huntsville (United States); Dmitry Savransky, Cornell Univ. (United States); Bruce A. Macintosh, Stanford Univ. (United States)
+\author[a]{Ewan S Douglas} %alphabetical:
+\author[d]{Brianna I Lacy}
+\author[a]{Kian Milani}
+\author[d]{Leonid Pogorelyuk}
+\author[c]{A J Eldorado Riggs}
+
+\affil[a]{University of Arizona,  Tucson, AZ, USA}
+\affil[b]{Jet Propulsion Laboratory, California Institute of Technology, Pasadena, CA, USA}
+\affil[d]{Princeton University, Princeton, NJ, USA}
+
+\authorinfo{Further author information: (Send correspondence to E.S.D.)\\E.S.D,: E-mail: douglase@arizona.edu}
+
+% Option to view page numbers
+\pagestyle{empty} % change to \pagestyle{plain} for page numbers   
+\setcounter{page}{301} % Set start page numbering at e.g. 301
+ 
+\begin{document} 
+\maketitle
+\input{acronyms}
+\begin{abstract}
+
+The WFIRST Coronagraph Instrument (CGI) will be capable of characterizing exoplanets in reflected light and will demonstrate space technologies essential for future missions to take spectra of Earthlike exoplanets. As the mission and instrument move into the final stages of design, simulation tools spanning from depth of search calculators to detailed diffraction models have been created by a variety of teams.  We summarize these efforts, with a particular focus on publicly available datasets and software tools. These include speckle and point-spread-function models, signal-to-noise calculators, and science product simulations (e.g. predicted observations of debris disks and exoplanet spectra). This review will be illustrated with new examples written in Python, and cross-validation to increase reproducibility and facilitate engagement with the technical and science capabilities of the CGI instrument. 
+
+\end{abstract}
+
+% Include a list of keywords after the abstract 
+\keywords{WFIRST, coronagraph, exoplanets, debris disks, modeling, diffraction, instrument yield, simulations}
+
+\section{INTRODUCTION}
+\label{sec:intro}  % \label{} allows reference to this section
+The \gls{WFIRST}\cite{spergel_wide-field_2015} \gls{CGI} is a technology demonstration\cite{kasdin_wfirst_2018} that will use high-contrast imaging and spectroscopy (coronagraphy),    wavefront sensing, and wavefront control\cite{douglas_wfirst_2018} to image planets in reflected light \cite{kasdin_wfirst_2018}.
+Orders of magnitude more sensitive than \gls{HST} or ground-based observatories\cite{bailey_wfirst_2019}, the design and  preparation for \gls{CGI} has spawned many new modeling tools to accurately predict performance. 
+This work summarizes many of these tools, both to serve as a roadmap for future potential users of \gls{CGI} and to document the work and aid other missions which may seek to reuse the many openly available tools which have been shared by \gls{CGI} science and engineering teams.
+
+\section{Review of tools}
+\label{sec:packages}  % \label{} allows reference to this section
+\subsection{PROPER Observing Scenarios}% - Krist
+\subsection{FALCO}%AJ
+FALCO\cite{riggs2018falco1} and PROPER\cite{krist2007proper}
+\subsection{Lightweight Space Coronagraph Simulator}
+Based on FALCO\cite{riggs2018falco1}, the "Lightweight Space Coronagraph Simulator" computes small linear perturbations about the nominal dark hole instead of propagating the full optical model.
+It allows quickly simulating observation scenarios with time evolving WFE, DM drift, LOWFS/C residual jitter and HOWFS/C\cite{pogorelyuk_effects_2020}. 
+The sensitivities to DM commands (the Jacobian) and to WFE were computed in 6 wavelengths using FALCO and remain valid in the linear regime (up to 10 nm phase perturbations). 
+This allows specification of DM voltages, WFE Zernikes, LOWFS residual jitter, detector noise and switching between broadband and narrowband modes.
+The Python code is fast and only requires NumPy\cite{numpy}.  Fig. \ref{fig:leonid} shows an example dark hole time series (left) and dark hole image (right).
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{leonid_thumbnail_LSCS.png}
+    \caption{An example of contrast evolution in presence of various wavefront instabilities in a linearized model of WFIRST-CGI. Closing the loop allows maintaining the contrast throughout the observation. Left: A broadband photon-counts image of a single exposure (used to close the contrast loop). See Pogorelyuk et al\cite{pogorelyuk_effects_2020} for details.}
+    \label{fig:leonid}
+\end{figure}
+\footnote{\url{https://github.com/leonidprinceton/LightweightSpaceCoronagraphSimulator}}
+\subsection{WebbPSF}% - ? Ewan and Jaren
+
+\subsection{EXOSIMS}% - Savransky
+\subsection{Yield Calcs}%- ? Bijan
+\subsection{Disks}% - Debes
+
+%Detectors - ?Patrick
+
+
+%\subsection{Spectra}%- ?Brianna
+
+%Spectra - ?Nikole
+
+%CRISPY - ?Neil or Maxime
+
+
+%EXOCAT - ?Maggie
+
+%pyKLIP - ?Laurent?
+
+%your tool here
+
+ 
+%\section{Examples}
+%\label{sec:examples}  % \label{} allows reference to this section
+
+
+\section{Summary}
+
+
+\acknowledgments % equivalent to \section*{ACKNOWLEDGMENTS}       
+ 
+
+Portions of this work were supported by the WFIRST Science Investigation team prime award \#NNG16PJ24C.
+% References
+\bibliography{report,wfirst} % add bibliography data in report.bib
+\bibliographystyle{spiebib} % makes bibtex use spiebib.bst
+
+\end{document} 
