@@ -3,22 +3,26 @@
 %\documentclass[nocompress]{spie}  %>>> to avoid compression of citations
 
 \renewcommand{\baselinestretch}{1.0} % Change to 1.65 for double spacing
- 
+
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{glossaries}
-\title{A review of simulation and performance modeling for the WFIRST coronagraph instrument}
+\title{A review of simulation and performance modeling for the Roman coronagraph instrument}
 % Ewan S. Douglas, Jaren N. Ashcraft, The Univ. of Arizona (United States); John Debes, Space Telescope Science Institute (United States); John Krist, Jet Propulsion Lab., Caltech (United States); Nikole K. Lewis, Cornell Univ. (United States); Kian Milani, The Univ. of Arizona (United States); Bijan Nemati, The Univ. of Alabama in Huntsville (United States); Dmitry Savransky, Cornell Univ. (United States); Bruce A. Macintosh, Stanford Univ. (United States)
 \author[a]{Ewan S Douglas} %alphabetical:
+\author[b]{John Debes}
+\author[c]{John Krist}
 \author[d]{Brianna I Lacy}
 \author[a]{Kian Milani}
-\author[d]{Leonid Pogorelyuk}
+\author[c]{Leonid Pogorelyuk}
 \author[c]{A J Eldorado Riggs}
-
+\author[e]{Dmitry Savransky}
 \affil[a]{University of Arizona,  Tucson, AZ, USA}
-\affil[b]{Jet Propulsion Laboratory, California Institute of Technology, Pasadena, CA, USA}
+\affil[b]{STScI}
+\affil[c]{Jet Propulsion Laboratory, California Institute of Technology, Pasadena, CA, USA}
 \affil[d]{Princeton University, Princeton, NJ, USA}
+\affil[e]{Cornell University, Ithica, NY, USA}
 
 \authorinfo{Further author information: (Send correspondence to E.S.D.)\\E.S.D,: E-mail: douglase@arizona.edu}
 
@@ -31,22 +35,29 @@
 \input{acronyms}
 \begin{abstract}
 
-The WFIRST Coronagraph Instrument (CGI) will be capable of characterizing exoplanets in reflected light and will demonstrate space technologies essential for future missions to take spectra of Earthlike exoplanets. As the mission and instrument move into the final stages of design, simulation tools spanning from depth of search calculators to detailed diffraction models have been created by a variety of teams.  We summarize these efforts, with a particular focus on publicly available datasets and software tools. These include speckle and point-spread-function models, signal-to-noise calculators, and science product simulations (e.g. predicted observations of debris disks and exoplanet spectra). This review will be illustrated with new examples written in Python, and cross-validation to increase reproducibility and facilitate engagement with the technical and science capabilities of the CGI instrument. 
+The Nancy Grace Roman Coronagraph Instrument (CGI) will be capable of characterizing exoplanets in reflected light and will demonstrate space technologies essential for future missions to take spectra of Earthlike exoplanets. As the mission and instrument move into the final stages of design, simulation tools spanning from depth of search calculators to detailed diffraction models have been created by a variety of teams.  We summarize these efforts, with a particular focus on publicly available datasets and software tools. These include speckle and point-spread-function models, signal-to-noise calculators, and science product simulations (e.g. predicted observations of debris disks and exoplanet spectra). This review will be illustrated with new examples written in Python, and cross-validation to increase reproducibility and facilitate engagement with the technical and science capabilities of the CGI instrument. 
 
 \end{abstract}
 
 % Include a list of keywords after the abstract 
-\keywords{WFIRST, coronagraph, exoplanets, debris disks, modeling, diffraction, instrument yield, simulations}
+\keywords{Roman, RST, WFIRST, coronagraph, exoplanets, debris disks, modeling, diffraction, instrument yield, simulations}
 
 \section{INTRODUCTION}
 \label{sec:intro}  % \label{} allows reference to this section
-The \gls{WFIRST}\cite{spergel_wide-field_2015} \gls{CGI} is a technology demonstration\cite{kasdin_wfirst_2018} that will use high-contrast imaging and spectroscopy (coronagraphy),    wavefront sensing, and wavefront control\cite{douglas_wfirst_2018} to image planets in reflected light \cite{kasdin_wfirst_2018}.
-Orders of magnitude more sensitive than \gls{HST} or ground-based observatories\cite{bailey_wfirst_2019}, the design and  preparation for \gls{CGI} has spawned many new modeling tools to accurately predict performance. 
+The \gls{WFIRST}\cite{spergel_wide-field_2015} \gls{CGI} is a technology demonstration\cite{kasdin_wfirst_2018,douglas_wfirst_2018} that will use high-contrast imaging and spectroscopy (coronagraphy),    wavefront sensing, and wavefront control\cite{shi_low_2016,sidick_wfirst_2018,}, to image planets in reflected light \cite{kasdin_wfirst_2018}.
+Formerly known as the Wide-Field Infrared Space Telescope, \gls{WFIRST} is orders of magnitude more sensitive than \gls{HST} or ground-based observatories\cite{bailey_wfirst_2019}.
+The design and  preparation for \gls{CGI} has spawned many new modeling tools to accurately predict performance. 
 This work summarizes many of these tools, both to serve as a roadmap for future potential users of \gls{CGI} and to document the work and aid other missions which may seek to reuse the many openly available tools which have been shared by \gls{CGI} science and engineering teams.
 
-\section{Review of tools}
+\section{Coronagraph Simulators}
 \label{sec:packages}  % \label{} allows reference to this section
-\subsection{PROPER Observing Scenarios}% - Krist
+\subsection{Observing Scenarios}% - Krist
+The most detailed and physically realistic simulations of \gls{CGI} observations released to date have taken the form of numbered observing scenarios. 
+These are referred to as OS$n$, e.g. OS9 for the ninth scenario.
+Physical optics simulations of the instrument including optical surfaces, coronagraphs, and wavefront sensing and control are generated using PROPER\cite{krist2007proper,krist_wfirst_2018}.
+The scenarios include speckle time series driven by wavefront maps produced by \gls{STOP} modeling of the Roman telescope.
+The scenario files are available to the public from IPAC\footnote{\url{https://roman.ipac.caltech.edu/sims/Coronagraph_public_images.html},}.
+
 \subsection{FALCO}%AJ
 FALCO\cite{riggs2018falco1} and PROPER\cite{krist2007proper}
 \subsection{Lightweight Space Coronagraph Simulator}
@@ -58,15 +69,43 @@ The Python code is fast and only requires NumPy\cite{numpy}.  Fig. \ref{fig:leon
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{leonid_thumbnail_LSCS.png}
-    \caption{An example of contrast evolution in presence of various wavefront instabilities in a linearized model of WFIRST-CGI. Closing the loop allows maintaining the contrast throughout the observation. Left: A broadband photon-counts image of a single exposure (used to close the contrast loop). See Pogorelyuk et al\cite{pogorelyuk_effects_2020} for details.}
+    \caption{An example of contrast evolution in presence of various wavefront instabilities in a linearized model of Roman-CGI. Closing the loop allows maintaining the contrast throughout the observation. Left: A broadband photon-counts image of a single exposure (used to close the contrast loop). See Pogorelyuk et al\cite{pogorelyuk_effects_2020} for details.}
     \label{fig:leonid}
 \end{figure}
 \footnote{\url{https://github.com/leonidprinceton/LightweightSpaceCoronagraphSimulator}}
+
+
+
+\subsection{crispy}
+The spectrometric modes of Roman have been simulated using Coronagraph and Rapid Imaging Spectrograph in Python (crispy)\cite{rizzo_simulating_2017}. crispy propagates input  spatially and spectrally resolved coronagraph simuations through the spectrograph and reconstructs the input scene as a 3D spectral datacube. 
 \subsection{WebbPSF}% - ? Ewan and Jaren
+WebbPSF\cite{perrin_simulating_2012,douglas_accelerated_2018-1} is a \gls{PSF} simulation tool originally developed for \gls{jwst} in Python. 
+Basic \gls{SPC} modes are currently included in WebbPSF\cite{perrin_poppy:_2016}\footnote{\url{https://www.stsci.edu/jwst/science-planning/proposal-planning-toolbox/psf-simulation-tool}} and are in the process of being updated to match current filters and mask designs.
+
+\section{Yield}
+\subsection{Yield Calculator}
+Nemati\cite{nemati_sensitivity_2017} developed an analytic model of instrument sensitivity that calculates the time-to-\gls{SNR} known \gls{RV} exoplanets.
 
 \subsection{EXOSIMS}% - Savransky
+\cite{savransky_exosims_2018,savransky_exosims_2017}
+
+
 \subsection{Yield Calcs}%- ? Bijan
-\subsection{Disks}% - Debes
+
+\section{Science Targets}
+
+\section{Reflected Light from self-Luminous Exoplanets}% - Lacy
+
+\section{Reflected Light from Cold Gas Giants}% - Marley et al
+
+\subsubsection{Fast Extended Source Simulation with a PSF Library }
+
+%update:
+The effect of the HLC’s transfer function on exozodiacal dust models is shown through the simulations using publicly available PSF cubes from IPAC. These simulations are done by generating the dust models of various parameters and applying the HLC’s transfer function via matrix multiplication. Because of the evolution of the PSF for angular offsets, PSFs must be generated for every angular offset of the pixel coordinates of the dust model. These PSFs are generated via interpolation of the PSFs available from IPAC and stored as large matrices. The exozodiacal model can then be flattened into a vector rather than a 2D array and multiplied by the matrix of interpolated PSFs since the HLC is still assumed to be a linear system. This allows for fast simulations of a variety of models, however, models with different pixel scales must have their own interpolated PSF arrays generated for them. For details and examples of such disk generation, see Milani et al. \cite{milani_2020}. 
+
+\subsection{Exoplanet Spectra}
+\subsection{Data Challenges}
+
 
 %Detectors - ?Patrick
 
@@ -95,7 +134,7 @@ The Python code is fast and only requires NumPy\cite{numpy}.  Fig. \ref{fig:leon
 \acknowledgments % equivalent to \section*{ACKNOWLEDGMENTS}       
  
 
-Portions of this work were supported by the WFIRST Science Investigation team prime award \#NNG16PJ24C.
+Portions of this work were supported by the Roman/WFIRST Science Investigation team prime award \#NNG16PJ24C.
 % References
 \bibliography{report,wfirst} % add bibliography data in report.bib
 \bibliographystyle{spiebib} % makes bibtex use spiebib.bst
