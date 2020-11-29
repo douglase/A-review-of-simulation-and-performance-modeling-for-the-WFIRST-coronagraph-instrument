@@ -8,21 +8,107 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{glossaries}
+\usepackage{soul}
+
+\usepackage{tabularx}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %define left justified column type
+
+%%aastex journal macros
+\makeatletter
+\let\jnl@style=\rm
+\def\ref@jnl#1{{\jnl@style#1}}
+\def\aj{\ref@jnl{AJ}}                   % Astronomical Journal
+\def\actaa{\ref@jnl{Acta Astron.}}      % Acta Astronomica
+\def\araa{\ref@jnl{ARA\&A}}             % Annual Review of Astron and Astrophys
+\def\apj{\ref@jnl{ApJ}}                 % Astrophysical Journal
+\def\apjl{\ref@jnl{ApJ}}                % Astrophysical Journal, Letters
+\def\apjs{\ref@jnl{ApJS}}               % Astrophysical Journal, Supplement
+\def\ao{\ref@jnl{Appl.~Opt.}}           % Applied Optics
+\def\apss{\ref@jnl{Ap\&SS}}             % Astrophysics and Space Science
+\def\aap{\ref@jnl{A\&A}}                % Astronomy and Astrophysics
+\def\aapr{\ref@jnl{A\&A~Rev.}}          % Astronomy and Astrophysics Reviews
+\def\aaps{\ref@jnl{A\&AS}}              % Astronomy and Astrophysics, Supplement
+\def\azh{\ref@jnl{AZh}}                 % Astronomicheskii Zhurnal
+\def\baas{\ref@jnl{BAAS}}               % Bulletin of the AAS
+\def\bac{\ref@jnl{Bull. astr. Inst. Czechosl.}}
+                % Bulletin of the Astronomical Institutes of Czechoslovakia 
+\def\caa{\ref@jnl{Chinese Astron. Astrophys.}}
+                % Chinese Astronomy and Astrophysics
+\def\cjaa{\ref@jnl{Chinese J. Astron. Astrophys.}}
+                % Chinese Journal of Astronomy and Astrophysics
+\def\icarus{\ref@jnl{Icarus}}           % Icarus
+\def\jcap{\ref@jnl{J. Cosmology Astropart. Phys.}}
+                % Journal of Cosmology and Astroparticle Physics
+\def\jrasc{\ref@jnl{JRASC}}             % Journal of the RAS of Canada
+\def\memras{\ref@jnl{MmRAS}}            % Memoirs of the RAS
+\def\mnras{\ref@jnl{MNRAS}}             % Monthly Notices of the RAS
+\def\na{\ref@jnl{New A}}                % New Astronomy
+\def\nar{\ref@jnl{New A Rev.}}          % New Astronomy Review
+\def\pra{\ref@jnl{Phys.~Rev.~A}}        % Physical Review A: General Physics
+\def\prb{\ref@jnl{Phys.~Rev.~B}}        % Physical Review B: Solid State
+\def\prc{\ref@jnl{Phys.~Rev.~C}}        % Physical Review C
+\def\prd{\ref@jnl{Phys.~Rev.~D}}        % Physical Review D
+\def\pre{\ref@jnl{Phys.~Rev.~E}}        % Physical Review E
+\def\prl{\ref@jnl{Phys.~Rev.~Lett.}}    % Physical Review Letters
+\def\pasa{\ref@jnl{PASA}}               % Publications of the Astron. Soc. of Australia
+\def\pasp{\ref@jnl{PASP}}               % Publications of the ASP
+\def\pasj{\ref@jnl{PASJ}}               % Publications of the ASJ
+\def\rmxaa{\ref@jnl{Rev. Mexicana Astron. Astrofis.}}%
+                % Revista Mexicana de Astronomia y Astrofisica
+\def\qjras{\ref@jnl{QJRAS}}             % Quarterly Journal of the RAS
+\def\skytel{\ref@jnl{S\&T}}             % Sky and Telescope
+\def\solphys{\ref@jnl{Sol.~Phys.}}      % Solar Physics
+\def\sovast{\ref@jnl{Soviet~Ast.}}      % Soviet Astronomy
+\def\ssr{\ref@jnl{Space~Sci.~Rev.}}     % Space Science Reviews
+\def\zap{\ref@jnl{ZAp}}                 % Zeitschrift fuer Astrophysik
+\def\nat{\ref@jnl{Nature}}              % Nature
+\def\iaucirc{\ref@jnl{IAU~Circ.}}       % IAU Cirulars
+\def\aplett{\ref@jnl{Astrophys.~Lett.}} % Astrophysics Letters
+\def\apspr{\ref@jnl{Astrophys.~Space~Phys.~Res.}}
+                % Astrophysics Space Physics Research
+\def\bain{\ref@jnl{Bull.~Astron.~Inst.~Netherlands}} 
+                % Bulletin Astronomical Institute of the Netherlands
+\def\fcp{\ref@jnl{Fund.~Cosmic~Phys.}}  % Fundamental Cosmic Physics
+\def\gca{\ref@jnl{Geochim.~Cosmochim.~Acta}}   % Geochimica Cosmochimica Acta
+\def\grl{\ref@jnl{Geophys.~Res.~Lett.}} % Geophysics Research Letters
+\def\jcp{\ref@jnl{J.~Chem.~Phys.}}      % Journal of Chemical Physics
+\def\jgr{\ref@jnl{J.~Geophys.~Res.}}    % Journal of Geophysics Research
+\def\jqsrt{\ref@jnl{J.~Quant.~Spec.~Radiat.~Transf.}}
+                % Journal of Quantitiative Spectroscopy and Radiative Transfer
+\def\memsai{\ref@jnl{Mem.~Soc.~Astron.~Italiana}}
+                % Mem. Societa Astronomica Italiana
+\def\nphysa{\ref@jnl{Nucl.~Phys.~A}}   % Nuclear Physics A
+\def\physrep{\ref@jnl{Phys.~Rep.}}   % Physics Reports
+\def\physscr{\ref@jnl{Phys.~Scr}}   % Physica Scripta
+\def\planss{\ref@jnl{Planet.~Space~Sci.}}   % Planetary Space Science
+\def\procspie{\ref@jnl{Proc.~SPIE}}   % Proceedings of the SPIE
+
+\let\astap=\aap
+\let\apjlett=\apjl
+\let\apjsupp=\apjs
+\let\applopt=\ao
+\let\amp=\&
+\makeatother
+
 \title{A review of simulation and performance modeling for the Roman coronagraph instrument}
 % Ewan S. Douglas, Jaren N. Ashcraft, The Univ. of Arizona (United States); John Debes, Space Telescope Science Institute (United States); John Krist, Jet Propulsion Lab., Caltech (United States); Nikole K. Lewis, Cornell Univ. (United States); Kian Milani, The Univ. of Arizona (United States); Bijan Nemati, The Univ. of Alabama in Huntsville (United States); Dmitry Savransky, Cornell Univ. (United States); Bruce A. Macintosh, Stanford Univ. (United States)
 \author[a]{Ewan S Douglas} %alphabetical:
+\author[a]{Jaren Ashcraft}
 \author[b]{John Debes}
 \author[c]{John Krist}
 \author[d]{Brianna I Lacy}
 \author[a]{Kian Milani}
-\author[c]{Leonid Pogorelyuk}
+\author[d]{Leonid Pogorelyuk}
 \author[c]{A J Eldorado Riggs}
 \author[e]{Dmitry Savransky}
+\author[f]{Dan Sirbu}
+\author[f]{Ruslan Belikov}
 \affil[a]{University of Arizona,  Tucson, AZ, USA}
 \affil[b]{STScI}
 \affil[c]{Jet Propulsion Laboratory, California Institute of Technology, Pasadena, CA, USA}
-\affil[d]{Princeton University, Princeton, NJ, USA}
+\affil[d]{MIT, Cambridge, MA, USA}
 \affil[e]{Cornell University, Ithica, NY, USA}
+\affil[f]{NASA Ames Research Center, Moffett Field, CA, USA}
 
 \authorinfo{Further author information: (Send correspondence to E.S.D.)\\E.S.D,: E-mail: douglase@arizona.edu}
 
@@ -35,77 +121,146 @@
 \input{acronyms}
 \begin{abstract}
 
-The Nancy Grace Roman Coronagraph Instrument (CGI) will be capable of characterizing exoplanets in reflected light and will demonstrate space technologies essential for future missions to take spectra of Earthlike exoplanets. As the mission and instrument move into the final stages of design, simulation tools spanning from depth of search calculators to detailed diffraction models have been created by a variety of teams.  We summarize these efforts, with a particular focus on publicly available datasets and software tools. These include speckle and point-spread-function models, signal-to-noise calculators, and science product simulations (e.g. predicted observations of debris disks and exoplanet spectra). This review will be illustrated with new examples written in Python, and cross-validation to increase reproducibility and facilitate engagement with the technical and science capabilities of the CGI instrument. 
+The Nancy Grace Roman Space Telescope Coronagraphic Instrument (CGI) will be capable of characterizing exoplanets in reflected light and will demonstrate space technologies essential for future missions to take spectra of Earthlike exoplanets. As the mission and instrument move into the final stages of design, simulation tools spanning from depth of search calculators to detailed diffraction models have been created by a variety of teams.  We summarize these efforts, with a particular focus on publicly available datasets and software tools. These include speckle and point-spread-function models, signal-to-noise calculators, and science product simulations (e.g. predicted observations of debris disks and exoplanet spectra). This review is intended to serve as a reference to facilitate engagement with the technical and science capabilities of the CGI instrument. 
 
 \end{abstract}
 
 % Include a list of keywords after the abstract 
-\keywords{Roman, RST, WFIRST, coronagraph, exoplanets, debris disks, modeling, diffraction, instrument yield, simulations}
+\keywords{Roman, WFIRST, coronagraph, exoplanets, debris disks, modeling, diffraction, instrument yield, simulations}
 
 \section{INTRODUCTION}
 \label{sec:intro}  % \label{} allows reference to this section
-The \gls{WFIRST}\cite{spergel_wide-field_2015} \gls{CGI} is a technology demonstration\cite{kasdin_wfirst_2018,douglas_wfirst_2018} that will use high-contrast imaging and spectroscopy (coronagraphy),    wavefront sensing, and wavefront control\cite{shi_low_2016,sidick_wfirst_2018,}, to image planets in reflected light \cite{kasdin_wfirst_2018}.
-Formerly known as the Wide-Field Infrared Space Telescope, \gls{WFIRST} is orders of magnitude more sensitive than \gls{HST} or ground-based observatories\cite{bailey_wfirst_2019}.
+The \gls{WFIRST}\cite{spergel_wide-field_2015} \gls{CGI} is a technology demonstration\cite{noecker_coronagraph_2016,kasdin_wfirst_2018,douglas_wfirst_2018,bailey_wfirst_2019-1} that will use high-contrast imaging and spectroscopy (coronagraphy),  wavefront sensing, and wavefront control\cite{shi_low_2016,sidick_wfirst_2018}, to image planets in reflected light \cite{kasdin_wfirst_2018}.
+Formerly known as the Wide-Field Infrared Survey Telescope, \gls{WFIRST} is orders of magnitude more sensitive than \gls{HST} or ground-based observatories\cite{bailey_wfirst_2019}.
+Two primary coronagraph technologies will be tested, a \gls{HLC} coronagraph\cite{trauger_hybrid_2016} for high contrast small-\gls{FOV} (<0.5 as) imaging, a bow-tie \gls{SPC}\cite{balasubramanian_wfirst-afta_2015} for spectroscopy and a wide-\gls{FOV} \gls{SPC}.
 The design and  preparation for \gls{CGI} has spawned many new modeling tools to accurately predict performance. 
 This work summarizes many of these tools, both to serve as a roadmap for future potential users of \gls{CGI} and to document the work and aid other missions which may seek to reuse the many openly available tools which have been shared by \gls{CGI} science and engineering teams.
+
+
+\begin{table}[ht]
+\renewcommand*{\arraystretch}{1.5}
+    \centering
+    \caption{Summary of Software Packages}
+    \label{tab:my_label}
+    \footnotesize
+    \begin{tabular}{L{3.75cm}|L{3.75cm}|c|p{6.25cm}}
+    \hline
+    Package & Application & References & URL\\
+    \hline
+    Observing Scenarios    & Complete observation simulation  & \citenum{krist_numerical_2015}& \url{https://roman.ipac.caltech.edu/sims/Coronagraph_public_images.html}\\
+    PROPER & Diffraction simulation & \cite{krist_proper:_2007,krist_wfirst_2017} & \url{https://github.com/ajeldorado/proper-models/tree/master/wfirst_cgi}\\
+     \verb+FALCO+  & Diffraction simulation   & \citenum{riggs2018falco1} & \url{https://github.com/ajeldorado/falco-matlab} \\
+     Lightweight Coronagraph Simulator & Coronagraph Simulation & \citenum{pogorelyuk_effects_2020}& \url{https://github.com/leonidprinceton/LightweightSpaceCoronagraphSimulator}\\
+     CZT-based Optical Propagation & Diffraction Simulation && \url{https://github.com/ARCExoplanetTechnologies/OpticalPropagation}\\
+           \verb+WebbPSF+ & Diffraction Simulation & \citenum{perrin_simulating_2012,perrin_updated_2014}  & \url{https://github.com/spacetelescope/webbpsf}\\
+
+     MSWC & Binary Star Simulation & \citenum{dsirbu2017mswc,dsirbu2018RomanMSWC} & \url{https://github.com/ARCExoplanetTechnologies/MSWC}\\
+     \verb+EXOSIMS+ & Mission Simulation & \citenum{savransky_exosims_2017,savransky_wfirst-afta_2016} &\url{https://github.com/dsavransky/EXOSIMS}\\
+     Imaging Mission Database&Mission Planning&\citenum{savransky_exploration_2019} & \url{https://plandb.sioslab.com}\\
+     Coronagraph convolved Debris Disks & Disk Simulation & \citenum{mennesson_wfirst_2018}& \url{https://roman.ipac.caltech.edu/sims/Circumstellar_Disk_Sims.html} \\
+     Known debris disk simulated scenes & Disk Simulation &\citenum{chen_wfirst_nodate}&  \url{https://roman.ipac.caltech.edu/sims/Chen_WPS.html}\\
+     direct-imaging-sims + model spectra & Target simulation &\citenum{Lacy2019, lacy_prospects_2020}  & \url{https://github.com/blacy/direct-imaging-sims},
+    \url{https://www.astro.princeton.edu/~burrows/wfirst/index.html}\\
+         Giant planet albedo spectra & Target simulation & \citenum{cahoy_exoplanet_2010}  &  \url{https://wfirst.ipac.caltech.edu/sims/Exoplanet_Characterization.html}\\
+     \hline
+    \end{tabular}
+\end{table}
+
 
 \section{Coronagraph Simulators}
 \label{sec:packages}  % \label{} allows reference to this section
 \subsection{Observing Scenarios}% - Krist
 The most detailed and physically realistic simulations of \gls{CGI} observations released to date have taken the form of numbered observing scenarios. 
-These are referred to as OS$n$, e.g. OS9 for the ninth scenario.
+These are referred to as OS$n$, e.g., OS9 for the ninth scenario.
 Physical optics simulations of the instrument including optical surfaces, coronagraphs, and wavefront sensing and control are generated using PROPER\cite{krist2007proper,krist_wfirst_2018}.
-The scenarios include speckle time series driven by wavefront maps produced by \gls{STOP} modeling of the Roman telescope.
-The scenario files are available to the public from IPAC\footnote{\url{https://roman.ipac.caltech.edu/sims/Coronagraph_public_images.html},}.
+The scenarios include speckle time series, derived from wavefront maps produced using \gls{STOP} modeling of the Roman observatory\cite{saini_impipeline_2017}.
+The OS model outputs include noisy and noiseless datacubes of coronagraphic intensity images versus time, with injected planets and realistic observing scenarios that include reference stars, and off-axis \gls{PSF}s for injecting additional targets.
+These scenario files are available to the public from IPAC\footnote{\url{https://roman.ipac.caltech.edu/sims/Coronagraph_public_images.html}}.
 
 \subsection{FALCO}%AJ
-FALCO\cite{riggs2018falco1} and PROPER\cite{krist2007proper}
+The FALCO\cite{riggs2018falco1} library builds on PROPER\cite{krist2007proper} to provide a faster environment for optimizing coronagraph design and wavefront sensing approaches. 
+Compact models of the coronagraphs and a full PROPER model are publicly available online. 
+
 \subsection{Lightweight Space Coronagraph Simulator}
-Based on FALCO\cite{riggs2018falco1}, the "Lightweight Space Coronagraph Simulator" computes small linear perturbations about the nominal dark hole instead of propagating the full optical model.
-It allows quickly simulating observation scenarios with time evolving WFE, DM drift, LOWFS/C residual jitter and HOWFS/C\cite{pogorelyuk_effects_2020}. 
-The sensitivities to DM commands (the Jacobian) and to WFE were computed in 6 wavelengths using FALCO and remain valid in the linear regime (up to 10 nm phase perturbations). 
-This allows specification of DM voltages, WFE Zernikes, LOWFS residual jitter, detector noise and switching between broadband and narrowband modes.
-The Python code is fast and only requires NumPy\cite{numpy}.  Fig. \ref{fig:leonid} shows an example dark hole time series (left) and dark hole image (right).
-\begin{figure}
+Based on FALCO\cite{riggs2018falco1}, the ``Lightweight Space Coronagraph Simulator''\footnote{\url{https://github.com/leonidprinceton/LightweightSpaceCoronagraphSimulator}} computes small linear perturbations about the nominal dark hole instead of propagating the full optical model.
+It allows quickly simulating observation scenarios with time evolving \gls{WFE}, \gls{DM} drift, \gls{LOWFSC} residual jitter and \gls{HOWFSC} \cite{pogorelyuk_effects_2020}. 
+The sensitivities to DM commands (the Jacobian) and to \gls{WFE} were computed in 6 wavelengths using FALCO and remain valid in the linear regime (up to 10 nm phase perturbations). 
+This allows specification of DM voltages, \gls{WFE} Zernikes, LOWFS residual jitter, detector noise and switching between broadband and narrowband modes.
+The Python code is designed to run fast and only requires NumPy\cite{numpy}. 
+Fig. \ref{fig:leonid} shows an example dark hole time series (left) and dark hole image (right).
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\textwidth]{leonid_thumbnail_LSCS.png}
-    \caption{An example of contrast evolution in presence of various wavefront instabilities in a linearized model of Roman-CGI. Closing the loop allows maintaining the contrast throughout the observation. Left: A broadband photon-counts image of a single exposure (used to close the contrast loop). See Pogorelyuk et al\cite{pogorelyuk_effects_2020} for details.}
+    \caption{An example of contrast evolution in presence of various wavefront instabilities in a linearized model of Roman-CGI. Left: Closing the loop allows maintaining the contrast throughout the observation. Right: A broadband photon-counts image of a single exposure (used to close the contrast loop). See Pogorelyuk et al.\cite{pogorelyuk_effects_2020} for details.}
     \label{fig:leonid}
 \end{figure}
-\footnote{\url{https://github.com/leonidprinceton/LightweightSpaceCoronagraphSimulator}}
 
 
+\subsection{CZT-based Optical Propagation}
+    The Chirp Z-Transform (CZT) based optical propagation library, developed at Princeton and NASA Ames, implements 2D Fraunhofer and Fresnel diffraction propagation on arbitrarily sampled input and output planes. It provides the same functionality and answer (to within numerical precision) as the more commonly used MFT technique (Matrix Fourier Transform), but is asymptotically faster. 
+    
+\subsection{MSWC}
 
-\subsection{crispy}
-The spectrometric modes of Roman have been simulated using Coronagraph and Rapid Imaging Spectrograph in Python (crispy)\cite{rizzo_simulating_2017}. crispy propagates input  spatially and spectrally resolved coronagraph simuations through the spectrograph and reconstructs the input scene as a 3D spectral datacube. 
+Binary stars represent a special challenge for a diffraction simulation due to the angular separation between the on-axis target and its off-axis companion. The off-axis companion can contribute stellar leakage due to optical aberrations at high-frequencies for every component in the optical train. The Multi-Star Wavefront Control (MSWC) package can be used to simulate binary stars, predict the expected leakage for different binary star imaging scenarios, and determine if the contrast leakage due to the off-axis companion introduces a background contrast floor for a particular Roman CGI imaging mode. This can flag known binaries as benign or requiring suppression. Depending on the Roman CGI imaging mode, wavefront control techniques may remove the binary companion's leakage \cite{sthomas15snwc, dsirbu2017mswc,dsirbu2018RomanMSWC}. 
+
+
 \subsection{WebbPSF}% - ? Ewan and Jaren
 WebbPSF\cite{perrin_simulating_2012,douglas_accelerated_2018-1} is a \gls{PSF} simulation tool originally developed for \gls{jwst} in Python. 
-Basic \gls{SPC} modes are currently included in WebbPSF\cite{perrin_poppy:_2016}\footnote{\url{https://www.stsci.edu/jwst/science-planning/proposal-planning-toolbox/psf-simulation-tool}} and are in the process of being updated to match current filters and mask designs.
+Basic \gls{SPC} modes are currently included in WebbPSF\cite{perrin_poppy_2016}\footnote{\url{https://www.stsci.edu/jwst/science-planning/proposal-planning-toolbox/psf-simulation-tool}} and are in the process of being updated to match current filters and mask designs.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics{os9_target_roll_-11deg_processed_image_with_planets.pdf}
+    \caption{Images from publicly available OS9  simulations of the \gls{HLC}  including time dependent speckle and detector effects. Left: simulated image with injected planets. Right: reference subtracted image showing planets and residual speckles.}
+    \label{fig:coronagraphs}
+\end{figure}
 
 \section{Yield}
 \subsection{Yield Calculator}
-Nemati\cite{nemati_sensitivity_2017} developed an analytic model of instrument sensitivity that calculates the time-to-\gls{SNR} known \gls{RV} exoplanets.
+Nemati\cite{nemati_sensitivity_2017,nemati_method_2020} developed an analytic model of instrument sensitivity that calculates the time-to-\gls{SNR} for known \gls{RV} exoplanets. 
+This model has been widely used by the project team as an Excel spreadsheet and is now publicly available as part of EXOSIMS (see below).
+
 
 \subsection{EXOSIMS}% - Savransky
-\cite{savransky_exosims_2018,savransky_exosims_2017}
+EXOSIMS\cite{savransky_exosims_2017} is an open source, full exoplanet imaging mission simulation tool,  which generates a survey ensemble of possible exoplanet detections given an underlying universe (e.g. exoplanet phase curves and occurrence rates) and observatory properties such as orbit, optical system performance, and background sources.
 
+\subsection{Imaging Mission Database}% - Savransky
+The online Cornell Space Imaging and Optical Systems Lab \textit{Imaging Mission Database}%\footnote{\url{plandb.sioslab.com}}
+uses stellar and \gls{RV} exoplanet physical properties\cite{batalha_color_2018}. As shown in Fig. \ref{fig:plandb}, these properties can be combined in joint distributions and compared to the instrumental sensitivity floor (blue curve) to assess the frequency of  detection in an observation.
+Similarly, the Imaging Mission Database generates depth of search maps\cite{garrett_2017} using EXOSIMS for blind-search targets such as the  EXOCAT database\cite{turnbull_exocat_2015}.
 
-\subsection{Yield Calcs}%- ? Bijan
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{plandb_47umac_completeness.png}
+    \caption{Map of the joint distribution of planet projected separation and $\Delta$mag for 47 Uma c generated using the Imaging Mission Database.}
+    \label{fig:plandb}
+\end{figure}
 
 \section{Science Targets}
 
-\section{Reflected Light from self-Luminous Exoplanets}% - Lacy
+\subsection{Light from Young Giant Exoplanets}% - Lacy
+Some of the substellar companions and young giant planets discovered by ground-based direct imaging surveys will be viable targets for Roman-CGI spectroscopy and photometry. This will present the first opportunity to make observations of such objects at wavelengths shorter than 0.95 $\mu$m. At the time of writing, we have identified HD 984 B, $\beta$-Pic b, HD 206893b, HR 8799e, and 51 Eri b as possible targets for Roman-CGI bandpasses 1, 2, and 3 which include spectroscopy and photometry. HR 2562b, HR 8799d, HR 8799c, $\kappa$-And b, HD 95086b, HR 3549b, HD 1160b, and HIP 65426b  are possible targets for photometry in bandpass 4. We used \textit{coolTLUSTY} to generate self-consistent 1D radiative-convective equilibrium atmosphere models for each possible target, assuming values for effective temperature, radius, and surface gravity taken from the literature and that atmospheres are clear with solar abundances. For some targets, we also compare to models with higher metallicities and with forsterite clouds. These are discussed in detail in Lacy \& Burrows 2020\cite{lacy_prospects_2020} and are available publicly.%\footnote{\url{https://github.com/blacy/direct-imaging-sims/tree/master/Models/ModelSpectra\_SelfLum\_Roman-CGI\_Targets}}.
+For all these objects, the dominant spectral features are the pressure broadened Na and K resonant doublets around 0.59 $\mu$m and 0.77 $\mu$m respectively, especially for the cooler objects where there is stronger pressure broadening at the photosphere. For the hotter objects (above $\sim$1300 K), metal hydrides like CaH and MgH have not yet condensed and rained out, so their absorption features are present in the spectra. For intermediate temperature objects and higher metallicity hot objects, absorption features from TiO and VO also appear in the spectra. When forsterite clouds are included they increase the continuum flux ratio in the optical range and weaken gaseous absorption features. Combining optical spectroscopy and photometry with NIR and MIR observations of these objects from other instruments will aid efforts to characterize these young planets since changes to cloud properties and metallicity have different effects in the optical than at longer wavelengths.  
 
-\section{Reflected Light from Cold Gas Giants}% - Marley et al
+Ideally, Roman-CGI spectroscopy will measure the strength of the $\sim$0.73 $\mu$m methane absorption feature for a reflected-light target, and constrain parameterized models incorporating cloud properties, a temperature-pressure profile, and mixing ratios of major gas-phase absorbers\cite{Lupu2016, Nayak2017, Damiano2020}. Whether this task is achieved will depend on the nature of the planets observed, the quality of data Roman-CGI collects, and the quality of auxiliary measurements like mass and orbital separation that are available from other sources. In the event that Roman-CGI performance is insufficient to constrain detailed models, Lacy et al. 2019\cite{Lacy2019} put forward a set of models suitable for addressing a simpler task: assessing how cool giant exoplanets compare to the cool gas giants and ice giants in our own solar system. Saturn and Jupiter have higher cloud layers and lower metallicities than Uranus and Neptune. Lower metallicities decrease the amount of methane, and higher clouds make for a smaller amount of gas above the cloud layer. Together these effects weaken Jupiter and Saturn's methane absorption features compared to Neptune and Uranus. At shorter wavelengths, from 0.4-0.6 microns, Saturn and Jupiter exhibit absorption from an unidentified chromophore which reddens their appearance. This is similar to the mix of hydrocarbons commonly termed Tholins that give Titan it's yellow-orange appearance. Retrievals on simulated observations showed that Roman-CGI observations should be able to fit a model consisting of a two-part linear combination of Jupiter and Neptune's reflective properties. One parameter sets the short wavelength weighting towards Jupiter versus Neptune and essentially depends on whether a chromophore is present or not. A second parameter sets the longer wavelength weighting towards Jupiter versus Neptune and mainly reflects the amount of methane present above the cloud layer. This approach supposes that Jupiter and Neptune represent two bounds of cool giant planet atmosphere behavior and that those observed will fall somewhere in between. Of course, this framework is over-simplified, but, in the absence of high resolution high SNR spectra, it could provide a useful starting point. A small grid of geometric albedo models in this form is also available\footnote{https://www.astro.princeton.edu/~burrows/wfirst/index.html}, along with a GUI for calculating the light curve through out a planet's orbit and a set of models representing Jupiter's geometric albedo with constant cloud properties but varying metallicity. 
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{all_self_lum_targets.png}
+    \caption{Model spectra for potential self-luminous targets including imaging and spectra. All models assume solar metallicity and an atmosphere free of clouds. Other model parameters are listed in table 2 of Lacy \& Burrows 2020\cite{lacy_prospects_2020}. Lines for different model spectra are colored in the order of the assumed effective temperature for each object. The shaded regions indicate the Roman-CGI bandpasses. The horizontal dashed lines mark the required contrast for technology demonstration success and the engineer's best estimate of the contrast that Roman-CGI can achieve. Note that the spectral resolution of model spectra shown here are higher than the Roman-CGI spectral resolution.}
+    \label{fig:self_lum_models}
+\end{figure}
+
+\subsection{Reflected Light from Cold Gas Giants}% - Marley et al
+Giant Exoplanet Albedo Spectra and colors as a function of planet phase, separation, and metallicity from Cahoy et al\cite{cahoy_exoplanet_2010} have been released along with a reference solar spectrum.
 
 \subsubsection{Fast Extended Source Simulation with a PSF Library }
 
 %update:
-The effect of the HLC’s transfer function on exozodiacal dust models is shown through the simulations using publicly available PSF cubes from IPAC. These simulations are done by generating the dust models of various parameters and applying the HLC’s transfer function via matrix multiplication. Because of the evolution of the PSF for angular offsets, PSFs must be generated for every angular offset of the pixel coordinates of the dust model. These PSFs are generated via interpolation of the PSFs available from IPAC and stored as large matrices. The exozodiacal model can then be flattened into a vector rather than a 2D array and multiplied by the matrix of interpolated PSFs since the HLC is still assumed to be a linear system. This allows for fast simulations of a variety of models, however, models with different pixel scales must have their own interpolated PSF arrays generated for them. For details and examples of such disk generation, see Milani et al. \cite{milani_2020}. 
+The effect of the coronagraph transfer functions on exozodiacal dust models is shown through the simulations using publicly available PSF cubes from IPAC. These simulations are done by generating the dust models of various parameters and applying the \gls{HLC}’s transfer function via matrix multiplication. Because of the evolution of the PSF for angular offsets, PSFs must be generated for every angular offset of the pixel coordinates of the dust model. These PSFs are generated via interpolation of the PSFs available from IPAC and stored as matrices in memory. The exozodiacal model can then be flattened into a vector rather than a 2D array and multiplied by the matrix of interpolated PSFs since the HLC is still assumed to be a linear system. This allows for fast simulations of a variety of models. For details and examples of such disk generation, see Milani et al. \cite{milani_faster_2020}. 
 
-\subsection{Exoplanet Spectra}
-\subsection{Data Challenges}
-
+\subsubsection{}
 
 %Detectors - ?Patrick
 
@@ -114,10 +269,6 @@ The effect of the HLC’s transfer function on exozodiacal dust models is shown 
 
 %Spectra - ?Nikole
 
-%CRISPY - ?Neil or Maxime
-
-
-%EXOCAT - ?Maggie
 
 %pyKLIP - ?Laurent?
 
@@ -130,9 +281,15 @@ The effect of the HLC’s transfer function on exozodiacal dust models is shown 
 
 \section{Summary}
 
+Roman CGI has has stimulated and nurtured a wide array of coronagraph and mission simulation tools. 
+In addition to the simulation software describe above, Data Challenges\cite{hildebrandt_wfirst_2018} have allowed the community to engage and develop additional tools\footnote{\url{https://roman.ipac.caltech.edu/sims/Exoplanet_Data_Challenges.html}}.
+Integral field spectrograph modes were considered for Roman and simulated in Coronagraph and Rapid Imaging Spectrograph in Python (\verb+crispy+)\cite{rizzo_simulating_2017} which may also prove useful for other missions\footnote{\url{https://github.com/mjrfringes/crispy}}. 
+It is hoped that the availability of these tools will allow the community to develop science questions with Roman CGI and provide springboards for future coronagraphic missions.
 
 \acknowledgments % equivalent to \section*{ACKNOWLEDGMENTS}       
- 
+ This research has made use of the Imaging Mission Database, which is operated by the Space Imaging and Optical Systems Lab at Cornell University. The database includes content from the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program, and from the SIMBAD database, operated at CDS, Strasbourg, France\cite{wenger_simbad_2000}.
+
+
 
 Portions of this work were supported by the Roman/WFIRST Science Investigation team prime award \#NNG16PJ24C.
 % References
