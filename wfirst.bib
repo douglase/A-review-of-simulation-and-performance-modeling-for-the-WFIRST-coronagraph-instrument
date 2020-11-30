@@ -1624,6 +1624,22 @@ demonstration is baselined to include two coronagraph modes with 360 degree dark
 	file = {Ertel et al. - Report on HOSTS survey return.pdf:/Users/edouglas/Zotero/storage/AFC6WA35/Ertel et al. - Report on HOSTS survey return.pdf:application/pdf}
 }
 
+@article{wang_pyklip:_2015,
+	title = {{pyKLIP}: {PSF} {Subtraction} for {Exoplanets} and {Disks}},
+	shorttitle = {{pyKLIP}},
+	url = {http://adsabs.harvard.edu/abs/2015ascl.soft06001W},
+	abstract = {pyKLIP subtracts out the stellar PSF to search for directly-imaged exoplanets and disks using a Python implementation of the
+Karhunen-Lo{\`e}ve Image Projection (KLIP) algorithm. pyKLIP supports ADI, SDI, and ADI+SDI to model the stellar PSF and offers a large array of PSF subtraction parameters to optimize the reduction. pyKLIP relies on a minimal amount of dependencies (numpy, scipy, and astropy) and parallelizes the KLIP algorithm to speed up the reduction. pyKLIP supports GPI and P1640 data and can interface with other data sources with the addition of new modules. It also can inject simulated planets and disks as well as automatically search for point sources in
+PSF-subtracted data.},
+	urldate = {2019-05-24},
+	journal = {Astrophysics Source Code Library},
+	author = {Wang, Jason J. and Ruffio, Jean-Baptise and De Rosa, Robert J. and Aguilar, Jonathan and Wolff, Schuyler G. and Pueyo, Laurent},
+	month = jun,
+	year = {2015},
+	keywords = {Software},
+	pages = {ascl:1506.001}
+}
+
 @inproceedings{ygouf_data_2016,
 	title = {Data processing and algorithm development for the {WFIRST} coronagraph: comparison of {RDI} and {ADI} strategies and impact of spatial sampling on post-processing},
 	volume = {9904},
@@ -2415,4 +2431,58 @@ extra-solar systems are processed through the WFIRST IFS instrument model, produ
 	year = {2017},
 	pages = {1040008},
 	file = {Snapshot:/Users/edouglas/Zotero/storage/XE7EWTXL/12.2274260.html:text/html}
+}
+
+@article{lacy_characterization_2019,
+	title = {Characterization of {Exoplanet} {Atmospheres} with the {Optical} {Coronagraph} on \textit{{WFIRST}}},
+	volume = {157},
+	issn = {1538-3881},
+	url = {https://iopscience.iop.org/article/10.3847/1538-3881/ab0415},
+	doi = {10.3847/1538-3881/ab0415},
+	abstract = {Wide-Field Infrared Survey Telescope (WFIRST)-CGI is a NASA technology demonstration mission that is charged with demonstrating key technologies for future exo-Earth imaging missions in space. In the process, it will obtain images and low-resolution spectra of a handful to a dozen extrasolar planets and possibly protoplanetary disks. Its unprecedented contrast levels in the optical will provide astronomers{\textquoteright} with their first direct look at mature, Jupiter-sized planets at moderate separations. This paper addresses the question: what science can be done with such data? An analytic noise model, which is informed by the ongoing engineering developments, is used to compute maximum achievable signal-to-noise ratios and scientifically viable integration times for hypothetical star{\textendash}planet systems, as well as to investigate the constraining power of various combinations of WFIRST-CGI photometric and spectral observations. This work introduces two simple models for planetary geometric albedos, which are inspired largely by the solar system{\textquoteright}s gas giants. The first planet model is a hybrid Jupiter{\textendash}Neptune model, which separately treats the short and long wavelengths where chromophores and methane dominate absorption, respectively. The second planet model fixes cloud and haze properties in CoolTLusty to match Jupiter{\textquoteright}s albedo spectrum, it then perturbs only the metallicity. MCMC retrievals performed on simulated observations are used to assess the precision with which planet model parameters can be measured subject to different exposure times and observing cases. Planet radius is recovered within?{\textpm}15\% for all observing cases with both the hybrid model and the CoolTLusty metallicity grid. Fit results for both models{\textquoteright} parameterizations of geometric albedo spectra demonstrate that a rough indication of the metallicity or methane content should be possible for some WFIRST-CGI targets. We conclude that real observations will likely be able to differentiate between extreme cases using these models, but will lack the precision necessary to uncover subtle trends.},
+	language = {en},
+	number = {3},
+	urldate = {2020-11-29},
+	journal = {AJ},
+	author = {Lacy, B. and Shlivko, D. and Burrows, A.},
+	month = mar,
+	year = {2019},
+	pages = {132},
+	file = {Lacy et al. - 2019 - Characterization of Exoplanet Atmospheres with the.pdf:/Users/edouglas/Zotero/storage/KC4KNR4C/Lacy et al. - 2019 - Characterization of Exoplanet Atmospheres with the.pdf:application/pdf}
+}
+
+@article{nayak_atmospheric_2017,
+	title = {Atmospheric {Retrieval} for {Direct} {Imaging} {Spectroscopy} of {Gas} {Giants} in {Reflected} {Light}. {II}. {Orbital} {Phase} and {Planetary} {Radius}},
+	volume = {129},
+	issn = {1538-3873},
+	url = {https://doi.org/10.1088%2F1538-3873%2F129%2F973%2F034401},
+	doi = {10.1088/1538-3873/129/973/034401},
+	abstract = {Future space-based telescopes, such as the Wide-Field Infrared Survey Telescope (WFIRST), will observe the reflected light spectra of directly imaged extrasolar planets. Interpretation of such data presents a number of novel challenges, including accounting for unknown planet radius and uncertain stellar illumination phase angle. Here, we report on our continued development of Markov Chain Monte Carlo retrieval methods for addressing these issues in the interpretation of such data. Specifically, we explore how the unknown planet radius and potentially poorly known observer-planet-star phase angle impacts retrievals of parameters of interest such as atmospheric methane abundance, cloud properties, and surface gravity. As expected, the uncertainty in retrieved values is a strong function of the signal-to-noise ratio (S/N) of the observed spectra, particularly for low metallicity atmospheres, which lack deep absorption signatures. Meaningful results may only be possible above certain S/N thresholds; for cases across a metallicity range of 1{\textendash}50 times solar, we find that only an S/N of 20 systematically reproduces a value close to the correct methane abundance at all phase angles. However, even in cases where the phase angle is poorly known we find that the planet radius can be constrained to within a factor of two. We find that uncertainty in planet radius decreases at phase angles past quadrature, as the highly forward-scattering nature of the atmosphere at these geometries limits the possible volume of phase space that relevant parameters can occupy. Finally, we present an estimation of possible improvement that can result from combining retrievals against observations at multiple phase angles.},
+	language = {en},
+	number = {973},
+	urldate = {2020-11-29},
+	journal = {PASP},
+	author = {Nayak, Michael and Lupu, Roxana and Marley, Mark S. and Fortney, Jonathan J. and Robinson, Tyler and Lewis, Nikole},
+	month = jan,
+	year = {2017},
+	note = {Publisher: IOP Publishing},
+	pages = {034401},
+	file = {IOP Full Text PDF:/Users/edouglas/Zotero/storage/TMGQXYXL/Nayak et al. - 2017 - Atmospheric Retrieval for Direct Imaging Spectrosc.pdf:application/pdf}
+}
+
+@article{mandell_wfirst_2019,
+	title = {The {WFIRST} {Coronograph} {Exoplanet} {Data} {Challenge}},
+	volume = {233},
+	url = {http://adsabs.harvard.edu/abs/2019AAS...23314044M},
+	abstract = {We present the status and future plans for the WFIRST Coronagraph Exoplanet Data Challenge (EDC). The goals of the Coronagraph Exoplanet Data Challenge are to provide quantitative feedback to the
+specifications and requirements of the WFIRST Coronagraph Instrument (CGI) and to leverage and develop expertise in the broader community. The EDC team produces and publicly releases simulated data, with the goal of improving our understanding of the efficacy of pipeline and instrument design by coordinating a comparison between blind spectral retrieval studies conducted by team members as well as the broader exoplanet analysis community. Each team member contributes to different areas of the EDC: the atmospheric modeling, WFIRST CGI instrumental properties, the simulated data and the retrieval of planetary
+atmospheres. The first cycle of the CGI EDC, called Data Challenge \#1, focused on improving atmospheric modeling tools for direct imaging observations at WFIRST wavelengths, with the goal of informing the choice of IFS resolution and bandpass. The upcoming Data Challenge \#2 will focus on extracting planets from simulated WFIRST images, in order to test planet discrimination from the image background using photometry and proper motion, and test how well we can determine orbits and test enhanced detection/orbit determination capability with late-mission starshade images. We are currently in the process on recruiting
+participants for this challenge, and encourage community members to join. The numerous participants in the Coronagraph Exoplanet Data Challenge are from institutions in Asia, Europe and the US, and several teams from outside the existing WFIRST community are already engaged in the process. This presentation will focus on what has been accomplished in Data Challenge \#1, what we hope to accomplish in future Data
+Challenges, and how the broader exoplanet community can get involved.},
+	urldate = {2020-11-29},
+	author = {Mandell, Avi M. and Turnbull, Margaret and Zimmerman, Neil T. and Hildebrandt, Sergi and Rizzo, Maxime and Roberge, Aki and Merrelli, Aronne},
+	month = jan,
+	year = {2019},
+	note = {Conference Name: American Astronomical Society Meeting Abstracts \#233},
+	pages = {140.44}
 }
